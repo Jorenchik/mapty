@@ -84,4 +84,9 @@ export const Content = styled.div`
     text-transform: uppercase;
     font-weight: 800;
   }
+
+  .workout:hover {
+    opacity: 0.85;
+    transition: all 0.2s;
+  }
 `;

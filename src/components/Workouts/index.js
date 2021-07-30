@@ -7,10 +7,14 @@ import { Wrapper, Content } from "./Workouts.styles";
 // Components
 
 const Workouts = () => (
-  <ul className="workouts">
-    <Workout />
-    <Workout />
-  </ul>
+  <Wrapper>
+    <Content>
+      <ul className="workouts">
+        <Workout />
+        <Workout />
+      </ul>
+    </Content>
+  </Wrapper>
 );
 
 export default Workouts;
