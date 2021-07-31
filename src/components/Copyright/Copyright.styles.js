@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Content = styled.p`
-  margin-top: auto;
   font-size: 1.3rem;
   text-align: center;
   color: var(--color-light--1);
   width: 100%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   opacity: 0.6;
+  margin-top: auto;
 
   .twitter-link:link,
   .twitter-link:visited {
