@@ -8,9 +8,7 @@ export const Content = styled.div`
   min-height: 100vh;
   height: 100%;
   overscroll-behavior-y: none;
-
   background-color: #fff;
   padding: 2.5rem;
-
   display: flex;
 `;
