@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./App.css";
-
 // Components
 import Map from "./components/Map";
 import SideBar from "./components/Sidebar";
@@ -11,6 +9,7 @@ import { Content } from "./App.styles";
 import { useEffect, useState } from "react";
 
 const App = () => {
+  // Initial state values
   const initialWorkoutInfo = {
     type: "running",
     duration: "0",
@@ -18,41 +17,81 @@ const App = () => {
     cadence: "0",
     elevation: "0",
   };
+
+  // State
   const [choosedLocation, setChoosedLocation] = useState(null);
   const [submittedWorkoutInfo, setSubmittedWorkoutInfo] =
     useState(initialWorkoutInfo);
   const [workouts, setWorkouts] = useState([]);
 
+  // Adding a workout object to state
+  const addWorkoutToState = (workout) => {
+    setWorkouts([
+      ...workouts,
+      {
+        id: workout.id,
+        latlng: workout.latlng,
+        type: workout.type,
+        duration: workout.duration,
+        distance: workout.distance,
+        cadence: workout.cadence,
+        elevation: workout.elevation,
+      },
+    ]);
+  };
+
+  // Handling the form submission, adding a workout to list
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
     const id = Math.trunc(Math.random() * 10000);
     const type = submittedWorkoutInfo.type;
     const distance = +submittedWorkoutInfo.distance;
     const duration = +submittedWorkoutInfo.duration;
-    if (!distance || !duration || !type) return;
 
-    if (type === "running" && duration > 0 && distance > 0) {
-      const cadence = +submittedWorkoutInfo.cadence;
-      if (!cadence) return;
-      setWorkouts([
-        ...workouts,
-        { id, latlng: choosedLocation, type, duration, cadence, distance },
-      ]);
-      setChoosedLocation(null);
-      setSubmittedWorkoutInfo(initialWorkoutInfo);
-    } else {
-      const elevation = +submittedWorkoutInfo.elevation;
-      if (!elevation) return;
-      setWorkouts([
-        ...workouts,
-        { id, latlng: choosedLocation, type, duration, elevation, distance },
-      ]);
-      setChoosedLocation(null);
-      setSubmittedWorkoutInfo(initialWorkoutInfo);
-    }
+    if (!distance || !duration || !type) return;
+    if (duration <= 0 && distance <= 0) return;
+
+    const cadence = +submittedWorkoutInfo.cadence;
+    const elevation = +submittedWorkoutInfo.cadence;
+
+    const newWorkout = {
+      id,
+      latlng: choosedLocation,
+      type,
+      duration,
+      distance,
+      cadence,
+      elevation,
+    };
+
+    addWorkoutToState(newWorkout);
+    setChoosedLocation(null);
+    setSubmittedWorkoutInfo(initialWorkoutInfo);
   };
 
-  console.log(workouts);
+  useEffect(() => {
+    setWorkoutsToLocalStorage(workouts);
+  }, [workouts]);
+
+  // Initial state to run fetch workouts from local storage only once
+  const [initialState, setInitialState] = useState(true);
+
+  // Local storage
+  const setWorkoutsToLocalStorage = (workouts) => {
+    if (initialState) return;
+    window.localStorage.setItem("workouts", JSON.stringify(workouts));
+  };
+
+  // Fetching workout data from local storage
+  useEffect(() => {
+    if (!initialState) return;
+    const workouts = JSON.parse(window.localStorage.getItem("workouts"));
+    if (!workouts) return;
+    setWorkouts(workouts);
+    setInitialState(false);
+  }, [initialState]);
+
   return (
     <Content>
       <SideBar
