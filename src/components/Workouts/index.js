@@ -30,6 +30,7 @@ const Workouts = ({
             duration={workout.duration}
             cadence={workout.cadence}
             type={workout.type}
+            elevation={workout.elevation}
           />
         ))}
       </ul>

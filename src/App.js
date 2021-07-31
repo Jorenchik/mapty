@@ -52,6 +52,7 @@ const App = () => {
     }
   };
 
+  console.log(workouts);
   return (
     <Content>
       <SideBar
