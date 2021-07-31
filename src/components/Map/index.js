@@ -28,9 +28,6 @@ function MyComponent({ setChoosedLocation }) {
     click: (e) => {
       setChoosedLocation(e.latlng);
     },
-    load: (e) => {
-      console.log(e);
-    },
   });
   return null;
 }

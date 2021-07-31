@@ -16,13 +16,29 @@ const App = () => {
   const [submittedWorkoutInfo, setSubmittedWorkoutInfo] = useState({
     type: "running",
   });
-  const [markers, setMarkers] = useState([]);
+  const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
-    console.log(choosedLocation);
+    const type = submittedWorkoutInfo.type;
+    const distance = +submittedWorkoutInfo.distance;
+    const duration = +submittedWorkoutInfo.duration;
+    if (!distance || !duration || !type) return;
+    if (type === "running" && duration >= 0 && distance >= 0) {
+      const cadence = +submittedWorkoutInfo.cadence;
+      if (!cadence) return;
+      setWorkouts([
+        ...workouts,
+        { latlng: choosedLocation, type, duration, cadence, distance },
+      ]);
+    } else {
+      const elevation = +submittedWorkoutInfo.elevation;
+      if (!elevation) return;
+      setWorkouts([
+        ...workouts,
+        { latlng: choosedLocation, type, duration, elevation, distance },
+      ]);
+    }
   }, [setIsFormSubmitted, isFormSubmitted]);
-
-  console.log(submittedWorkoutInfo);
 
   return (
     <Content>
