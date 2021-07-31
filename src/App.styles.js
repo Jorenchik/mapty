@@ -6,6 +6,7 @@ export const Content = styled.div`
   font-weight: 400;
   line-height: 1.6;
   min-height: 100vh;
+  height: 100%;
   overscroll-behavior-y: none;
 
   background-color: #fff;
