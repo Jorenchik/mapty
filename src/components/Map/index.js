@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 // Styles
 import { Content } from "./Map.styles";
 
+const getLocation = function () {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (location) => location,
+      () => [51.505, -0.09]
+    );
+  }
+};
+
 const Map = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const location = getLocation();
+  }, []);
+
   return (
     <Content>
       <MapContainer
