@@ -9,21 +9,29 @@ import { Content } from "./Workouts.styles";
 
 const Workouts = ({
   formVisible,
-  setIsFormSubmitted,
-  setSubmittedWorkoutInfo,
   submittedWorkoutInfo,
+  handleFormSubmit,
+  setSubmittedWorkoutInfo,
+  workouts,
 }) => {
   return (
     <Content>
       <ul className="workouts">
         <Form
           visibility={formVisible}
-          setIsFormSubmitted={setIsFormSubmitted}
-          setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
+          handleFormSubmit={handleFormSubmit}
           submittedWorkoutInfo={submittedWorkoutInfo}
+          setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
         />
-        <Workout />
-        <Workout />
+        {workouts?.map((workout) => (
+          <Workout
+            key={workout.id}
+            distance={workout.distance}
+            duration={workout.duration}
+            cadence={workout.cadence}
+            type={workout.type}
+          />
+        ))}
       </ul>
     </Content>
   );

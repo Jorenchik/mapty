@@ -5,15 +5,10 @@ import { Content } from "./Form.styles";
 
 const Form = ({
   visibility,
-  setIsFormSubmitted,
-  setSubmittedWorkoutInfo,
+  handleFormSubmit,
   submittedWorkoutInfo,
+  setSubmittedWorkoutInfo,
 }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsFormSubmitted(true);
-  };
-
   const handleTypeChange = (e) => {
     const newWorkoutInfo = {
       ...submittedWorkoutInfo,
@@ -59,7 +54,7 @@ const Form = ({
   return (
     <Content>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleFormSubmit}
         className={`form ${visibility ? "" : "hidden"}`}
       >
         <div className="form__row">
@@ -78,6 +73,7 @@ const Form = ({
             onChange={handleDistanceChange}
             className="form__input form__input--distance"
             placeholder="km"
+            value={submittedWorkoutInfo.distance}
           />
         </div>
         <div className="form__row">
@@ -86,6 +82,7 @@ const Form = ({
             onChange={handleDurationChange}
             className="form__input form__input--duration"
             placeholder="min"
+            value={submittedWorkoutInfo.duration}
           />
         </div>
         {submittedWorkoutInfo.type === "running" ? (
@@ -95,6 +92,7 @@ const Form = ({
               onChange={handleCadenceChange}
               className="form__input form__input--cadence"
               placeholder="steps/min"
+              value={submittedWorkoutInfo.cadence}
             />
           </div>
         ) : (
@@ -104,6 +102,7 @@ const Form = ({
               onChange={handleElevationChange}
               className="form__input form__input--elevation"
               placeholder="meters"
+              value={submittedWorkoutInfo.elevation}
             />
           </div>
         )}

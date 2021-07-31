@@ -10,16 +10,18 @@ import Logo from "../Logo";
 
 const SideBar = ({
   formVisible,
-  setIsFormSubmitted,
-  setSubmittedWorkoutInfo,
   submittedWorkoutInfo,
+  handleFormSubmit,
+  setSubmittedWorkoutInfo,
+  workouts,
 }) => {
   return (
     <Content>
       <Logo />
       <Workouts
+        workouts={workouts}
+        handleFormSubmit={handleFormSubmit}
         formVisible={formVisible}
-        setIsFormSubmitted={setIsFormSubmitted}
         setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
         submittedWorkoutInfo={submittedWorkoutInfo}
       />
