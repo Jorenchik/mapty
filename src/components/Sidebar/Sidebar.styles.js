@@ -9,6 +9,14 @@ export const Content = styled.div`
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 
+  @media screen and (max-width: 1024px) {
+    flex-basis: 20rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-basis: 15rem;
+  }
+
   .logo {
     height: 5.2rem;
     align-self: center;
