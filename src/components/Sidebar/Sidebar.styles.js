@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div``;
-
 export const Content = styled.div`
   flex-basis: 50rem;
   background-color: var(--color-dark--1);

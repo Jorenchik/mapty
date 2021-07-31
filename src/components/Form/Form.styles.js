@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div``;
 export const Content = styled.div`
   .form {
     background-color: var(--color-dark--2);

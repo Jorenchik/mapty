@@ -4,12 +4,15 @@ import "./App.css";
 import Map from "./components/Map";
 import SideBar from "./components/Sidebar";
 
+// Styles
+import { Content } from "./App.styles";
+
 function App() {
   return (
-    <div>
+    <Content>
       <SideBar />
       <Map />
-    </div>
+    </Content>
   );
 }
 

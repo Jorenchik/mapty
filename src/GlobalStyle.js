@@ -23,20 +23,6 @@ html {
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Manrope', sans-serif;
-  color: var(--color-light--2);
-  font-weight: 400;
-  line-height: 1.6;
-  height: 100vh;
-  overscroll-behavior-y: none;
-
-  background-color: #fff;
-  padding: 2.5rem;
-
-  display: flex;
-}
-
 /* GENERAL */
 a:link,
 a:visited {
