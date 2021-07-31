@@ -5,17 +5,16 @@ import { Content } from "./Sidebar.styles";
 
 // Components
 import Workouts from "../Workouts";
-import Form from "../Form";
 import Copyright from "../Copyright";
 import Logo from "../Logo";
 
-const SideBar = () => (
-  <Content>
-    <Logo />
-    <Form />
-    <Workouts />
-    <Copyright />
-  </Content>
-);
-
+const SideBar = ({ formVisible }) => {
+  return (
+    <Content>
+      <Logo />
+      <Workouts formVisible={formVisible} />
+      <Copyright />
+    </Content>
+  );
+};
 export default SideBar;

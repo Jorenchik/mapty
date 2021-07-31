@@ -6,14 +6,17 @@ import SideBar from "./components/Sidebar";
 
 // Styles
 import { Content } from "./App.styles";
+import { useEffect, useState } from "react";
 
-function App() {
+const App = () => {
+  const [choosedLocation, setChoosedLocation] = useState(null);
+
   return (
     <Content>
-      <SideBar />
-      <Map />
+      <SideBar formVisible={choosedLocation ? true : false} />
+      <Map setChoosedLocation={setChoosedLocation} />
     </Content>
   );
-}
+};
 
 export default App;

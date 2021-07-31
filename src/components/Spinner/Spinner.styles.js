@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   background: var(--color-dark--2);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  z-index: 1000;
 `;
 
 export const Content = styled.div`

@@ -3,9 +3,9 @@ import React from "react";
 // Styles
 import { Content } from "./Form.styles";
 
-const Form = () => (
+const Form = ({ visibility }) => (
   <Content>
-    <form className="form hidden">
+    <form className={`form ${visibility ? "" : "hidden"}`}>
       <div className="form__row">
         <label className="form__label">Type</label>
         <select className="form__input form__input--type">
