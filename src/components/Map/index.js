@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   MapContainer,
@@ -11,20 +11,17 @@ import {
 // Styles
 import { Content } from "./Map.styles";
 
-// Components
-import Spinner from "../Spinner";
-
-const getLocation = function () {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (location) => location,
-      () => [51.505, -0.09]
-    );
-  }
-};
+// const getLocation = function () {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(
+//       (location) => location,
+//       () => [51.505, -0.09]
+//     );
+//   }
+// };
 
 function MyComponent({ setChoosedLocation }) {
-  const map = useMapEvents({
+  useMapEvents({
     click: (e) => {
       setChoosedLocation(e.latlng);
     },
@@ -33,12 +30,12 @@ function MyComponent({ setChoosedLocation }) {
 }
 
 const Map = ({ setChoosedLocation, workouts }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(true);
 
-  useEffect(() => {
-    const location = getLocation();
-  }, []);
+  // useEffect(() => {
+  //   const location = getLocation();
+  // }, []);
 
   return (
     <Content>

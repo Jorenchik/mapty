@@ -70,18 +70,19 @@ const App = () => {
     setSubmittedWorkoutInfo(initialWorkoutInfo);
   };
 
-  useEffect(() => {
-    setWorkoutsToLocalStorage(workouts);
-  }, [workouts]);
-
-  // Initial state to run fetch workouts from local storage only once
-  const [initialState, setInitialState] = useState(true);
-
   // Local storage
+  // eslint-disable-next-line
   const setWorkoutsToLocalStorage = (workouts) => {
     if (initialState) return;
     window.localStorage.setItem("workouts", JSON.stringify(workouts));
   };
+
+  useEffect(() => {
+    setWorkoutsToLocalStorage(workouts);
+  }, [setWorkoutsToLocalStorage, workouts]);
+
+  // Initial state to run fetch workouts from local storage only once
+  const [initialState, setInitialState] = useState(true);
 
   // Fetching workout data from local storage
   useEffect(() => {
