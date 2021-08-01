@@ -18,11 +18,20 @@ const App = () => {
     elevation: "0",
   };
 
+  const getLocation = function (setLocaion) {
+    if (!navigator.geolocation) return [51.505, -0.09];
+    navigator.geolocation.getCurrentPosition((location) => {
+      const { latitude, longitude } = location.coords;
+      setLocation([latitude, longitude]);
+    });
+  };
+
   // State
   const [choosedLocation, setChoosedLocation] = useState(null);
   const [submittedWorkoutInfo, setSubmittedWorkoutInfo] =
     useState(initialWorkoutInfo);
   const [workouts, setWorkouts] = useState([]);
+  const [location, setLocation] = useState([51.505, -0.09]);
 
   // Adding a workout object to state
   const addWorkoutToState = (workout) => {
@@ -92,9 +101,10 @@ const App = () => {
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
 
-  // Fetching workout data from local storage
+  // Fetching workout data from local storage and getting location
   useEffect(() => {
     if (!initialState) return;
+    getLocation(setLocation);
     const workouts = JSON.parse(window.localStorage.getItem("workouts"));
     if (!workouts || workouts.length === 0) return;
     setWorkouts(workouts);
@@ -110,7 +120,11 @@ const App = () => {
         submittedWorkoutInfo={submittedWorkoutInfo}
         workouts={workouts}
       />
-      <Map setChoosedLocation={setChoosedLocation} workouts={workouts} />
+      <Map
+        setChoosedLocation={setChoosedLocation}
+        workouts={workouts}
+        location={location}
+      />
     </Content>
   );
 };

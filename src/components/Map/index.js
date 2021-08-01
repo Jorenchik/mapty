@@ -11,41 +11,35 @@ import {
 // Styles
 import { Content } from "./Map.styles";
 
-// const getLocation = function () {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(
-//       (location) => location,
-//       () => [51.505, -0.09]
-//     );
-//   }
-// };
-
-function MyComponent({ setChoosedLocation }) {
-  useMapEvents({
+function MyComponent({ setChoosedLocation, location }) {
+  const map = useMapEvents({
     click: (e) => {
       setChoosedLocation(e.latlng);
     },
   });
+  map.setView(location);
   return null;
 }
 
-const Map = ({ setChoosedLocation, workouts }) => {
+const Map = ({ setChoosedLocation, workouts, location }) => {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(true);
 
   // useEffect(() => {
   //   const location = getLocation();
   // }, []);
-
   return (
     <Content>
       <MapContainer
         id="map"
-        center={[51.505, -0.09]}
+        center={location}
         zoom={13}
         scrollWheelZoom={false}
       >
-        <MyComponent setChoosedLocation={setChoosedLocation} />
+        <MyComponent
+          setChoosedLocation={setChoosedLocation}
+          location={location}
+        />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
