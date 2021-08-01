@@ -84,8 +84,6 @@ const App = () => {
     window.localStorage.setItem("workouts", JSON.stringify(workouts));
   };
 
-  console.log(workouts);
-
   useEffect(() => {
     if (!workouts || workouts.length === 0) return;
     setWorkoutsToLocalStorage(workouts);
@@ -94,7 +92,6 @@ const App = () => {
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
 
-  console.log(workouts);
   // Fetching workout data from local storage
   useEffect(() => {
     if (!initialState) return;
