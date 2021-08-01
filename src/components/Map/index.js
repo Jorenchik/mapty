@@ -52,8 +52,12 @@ const Map = ({ setChoosedLocation, workouts }) => {
         />
         {workouts.map((workout) => (
           <Marker key={workout.id} position={workout.latlng}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+            <Popup className={`${workout.type}-popup`}>
+              {workout.type === "running" ? "🏃‍♂️" : "🚴‍♂️"}
+              <span> </span>
+              {`${workout.type[0].toUpperCase()}${workout.type.slice(1)} - ${
+                workout.distance
+              } km`}
             </Popup>
           </Marker>
         ))}
