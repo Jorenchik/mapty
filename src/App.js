@@ -84,19 +84,22 @@ const App = () => {
     window.localStorage.setItem("workouts", JSON.stringify(workouts));
   };
 
+  console.log(workouts);
+
   useEffect(() => {
-    if (workouts.length === 0) return;
+    if (!workouts || workouts.length === 0) return;
     setWorkoutsToLocalStorage(workouts);
   }, [setWorkoutsToLocalStorage, workouts]);
 
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
 
+  console.log(workouts);
   // Fetching workout data from local storage
   useEffect(() => {
     if (!initialState) return;
     const workouts = JSON.parse(window.localStorage.getItem("workouts"));
-    if (workouts.length === 0) return;
+    if (!workouts || workouts.length === 0) return;
     setWorkouts(workouts);
     setInitialState(false);
   }, [initialState]);
