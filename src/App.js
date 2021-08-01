@@ -55,6 +55,14 @@ const App = () => {
     const cadence = +submittedWorkoutInfo.cadence;
     const elevation = +submittedWorkoutInfo.cadence;
 
+    if (
+      isNaN(distance) ||
+      isNaN(duration) ||
+      isNaN(cadence) ||
+      isNaN(elevation)
+    )
+      return;
+
     const newWorkout = {
       id,
       latlng: choosedLocation,
@@ -73,11 +81,11 @@ const App = () => {
   // Local storage
   // eslint-disable-next-line
   const setWorkoutsToLocalStorage = (workouts) => {
-    if (initialState) return;
     window.localStorage.setItem("workouts", JSON.stringify(workouts));
   };
 
   useEffect(() => {
+    if (workouts.length === 0) return;
     setWorkoutsToLocalStorage(workouts);
   }, [setWorkoutsToLocalStorage, workouts]);
 
@@ -88,7 +96,7 @@ const App = () => {
   useEffect(() => {
     if (!initialState) return;
     const workouts = JSON.parse(window.localStorage.getItem("workouts"));
-    if (!workouts) return;
+    if (workouts.length === 0) return;
     setWorkouts(workouts);
     setInitialState(false);
   }, [initialState]);
