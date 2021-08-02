@@ -62,7 +62,7 @@ const App = () => {
     if (duration <= 0 && distance <= 0) return;
 
     const cadence = +submittedWorkoutInfo.cadence;
-    const elevation = +submittedWorkoutInfo.cadence;
+    const elevation = +submittedWorkoutInfo.elevation;
 
     if (
       isNaN(distance) ||
