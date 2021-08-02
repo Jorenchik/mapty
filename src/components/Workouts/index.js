@@ -14,6 +14,7 @@ const Workouts = ({
   handleFormSubmit,
   setSubmittedWorkoutInfo,
   workouts,
+  sortingDesc,
 }) => {
   return (
     <Content>
@@ -26,6 +27,7 @@ const Workouts = ({
         />
         {workouts?.map((workout) => (
           <Workout
+            date={workout.date}
             key={workout.id}
             distance={workout.distance}
             duration={workout.duration}
@@ -45,6 +47,7 @@ Workouts.propTypes = {
   handleFormSubmit: PropTypes.func,
   setSubmittedWorkoutInfo: PropTypes.func,
   workouts: PropTypes.array,
+  sortingDesc: PropTypes.bool,
 };
 
 export default Workouts;

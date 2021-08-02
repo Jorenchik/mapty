@@ -1,9 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 // Styles
 import { Wrapper, Content, Button } from "./Overline.styles";
 
-const Overline = () => {
+const Overline = ({ sortingDesc, setSortingDesc }) => {
+  // console.log(sortingDesc);
   return (
     <>
       <Wrapper>
@@ -14,6 +16,11 @@ const Overline = () => {
       </Wrapper>
     </>
   );
+};
+
+Overline.propTypes = {
+  sortingDesc: PropTypes.bool,
+  setSortingDesc: PropTypes.func,
 };
 
 export default Overline;

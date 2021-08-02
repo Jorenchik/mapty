@@ -16,20 +16,25 @@ const SideBar = ({
   handleFormSubmit,
   setSubmittedWorkoutInfo,
   workouts,
+  sortingDesc,
+  setSortingDesc,
 }) => {
   return (
-    <Content>
-      <Logo />
-      <Overline />
-      <Workouts
-        workouts={workouts}
-        handleFormSubmit={handleFormSubmit}
-        formVisible={formVisible}
-        setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
-        submittedWorkoutInfo={submittedWorkoutInfo}
-      />
-      <Copyright />
-    </Content>
+    <>
+      <Content>
+        <Logo />
+        <Overline sortingDesc={sortingDesc} setSortingDesc={setSortingDesc} />
+        <Workouts
+          workouts={workouts}
+          handleFormSubmit={handleFormSubmit}
+          formVisible={formVisible}
+          setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
+          submittedWorkoutInfo={submittedWorkoutInfo}
+          sortingDesc={sortingDesc}
+        />
+        <Copyright />
+      </Content>
+    </>
   );
 };
 
@@ -39,6 +44,8 @@ SideBar.propTypes = {
   handleFormSubmit: PropTypes.func,
   setSubmittedWorkoutInfo: PropTypes.func,
   workouts: PropTypes.array,
+  sortingDesc: PropTypes.bool,
+  setSortingDesc: PropTypes.func,
 };
 
 export default SideBar;
