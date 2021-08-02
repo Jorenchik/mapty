@@ -1,5 +1,6 @@
 import React from "react";
 
+// Components
 import {
   MapContainer,
   Marker,
@@ -11,6 +12,7 @@ import {
 // Styles
 import { Content } from "./Map.styles";
 
+// Map event using component
 function MyComponent({ setChoosedLocation, location }) {
   const map = useMapEvents({
     click: (e) => {
@@ -25,9 +27,6 @@ const Map = ({ setChoosedLocation, workouts, location }) => {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(true);
 
-  // useEffect(() => {
-  //   const location = getLocation();
-  // }, []);
   return (
     <Content>
       <MapContainer
