@@ -36,6 +36,7 @@ const App = () => {
   const [sortingDesc, setSortingDesc] = useState(true);
   const [error, setError] = useState("");
   const [submissionType, setSubmissionType] = useState("");
+  const [selectedWorkoutId, setSelectedWorkoutId] = useState();
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
 
@@ -59,6 +60,7 @@ const App = () => {
   // Handling the form submission, adding a workout to list
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    // Resetting the error
     setError("");
 
     // Generating random id
@@ -98,25 +100,53 @@ const App = () => {
       return setError("Values must be greater than zero.");
     }
 
-    // Computing new workout object
-    const newWorkout = {
-      date: new Date(),
-      id,
-      latlng: choosedLocation,
-      type,
-      duration,
-      distance,
-      cadence,
-      elevation,
-    };
+    // User is trying to add workout
+    if (submissionType === "add") {
+      // Computing new workout object
+      const newWorkout = {
+        date: new Date(),
+        id,
+        latlng: choosedLocation,
+        type,
+        duration,
+        distance,
+        cadence,
+        elevation,
+      };
 
-    // Updating the state
-    addWorkoutToState(newWorkout);
+      // Updating the state
+      addWorkoutToState(newWorkout);
+    }
+
+    // User is trying to edit workout
+    if (submissionType === "edit") {
+      const selectedWorkout = findWokroutById(selectedWorkoutId);
+      const newWorkouts = workouts.map((workout) => {
+        if (workout.id === selectedWorkout.id) {
+          return {
+            date: selectedWorkout.date,
+            id: selectedWorkout.id,
+            latlng: selectedWorkout.latlng,
+            type,
+            duration,
+            distance,
+            cadence,
+            elevation,
+          };
+        } else {
+          return workout;
+        }
+      });
+
+      // Update workouts state
+      setWorkouts(newWorkouts);
+    }
 
     // Resetting the workout adding form
     setError("");
     setChoosedLocation(null);
     setSubmittedWorkoutInfo(initialWorkoutInfo);
+    // Resetting subbmision type
     setSubmissionType("");
   };
 
@@ -148,6 +178,25 @@ const App = () => {
     window.localStorage.removeItem("workouts");
   };
 
+  // Handle edit button from workout list element
+  const handleWorkoutEdit = (workoutId) => {
+    setSelectedWorkoutId(workoutId);
+    const selectedWorkout = findWokroutById(workoutId);
+    if (!selectedWorkout) return;
+    setSubmittedWorkoutInfo({
+      type: selectedWorkout.type,
+      duration: selectedWorkout.duration.toString(),
+      distance: selectedWorkout.distance.toString(),
+      cadence: selectedWorkout.cadence.toString(),
+      elevation: selectedWorkout.elevation.toString(),
+    });
+    setSubmissionType("edit");
+  };
+
+  const findWokroutById = (id) => {
+    return workouts.find((workouts) => workouts.id === id);
+  };
+
   const handleWorkoutElementClick = (position) => {
     const { lat: latitude, lng: longitude } = position;
     setLocation([latitude, longitude]);
@@ -157,7 +206,7 @@ const App = () => {
     <Content>
       <SideBar
         handleFormSubmit={handleFormSubmit}
-        formVisible={choosedLocation ? true : false}
+        formVisible={submissionType ? true : false}
         setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
         submittedWorkoutInfo={submittedWorkoutInfo}
         workouts={workouts}
@@ -165,6 +214,7 @@ const App = () => {
         setSortingDesc={setSortingDesc}
         handleDeleteAll={handleDeleteAll}
         handleWorkoutElementClick={handleWorkoutElementClick}
+        handleWorkoutEdit={handleWorkoutEdit}
         error={error}
       />
       <Map

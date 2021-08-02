@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { number } from "prop-types";
 
 // Styles
 import { Wrapper, Content, Button } from "./Workout.styles";
@@ -8,6 +8,7 @@ import { Wrapper, Content, Button } from "./Workout.styles";
 import { getHumanReadableDate } from "../../helpers";
 
 const Workout = ({
+  id,
   date,
   type,
   distance,
@@ -16,6 +17,7 @@ const Workout = ({
   cadence,
   elevation,
   handleWorkoutElementClick,
+  handleWorkoutEdit,
 }) => {
   const dateObj = new Date(date);
   return (
@@ -31,7 +33,9 @@ const Workout = ({
               1
             )} on ${getHumanReadableDate(dateObj)}`}</h2>
             <div className="workout__actions">
-              <Button href="#">Edit</Button>
+              <Button href="#" onClick={() => handleWorkoutEdit(id)}>
+                Edit
+              </Button>
               <Button href="#">Delete</Button>
             </div>
           </div>
@@ -76,6 +80,7 @@ const Workout = ({
 };
 
 Workout.propTypes = {
+  id: number,
   date: PropTypes.string,
   type: PropTypes.string,
   position: PropTypes.object,
@@ -83,6 +88,8 @@ Workout.propTypes = {
   duration: PropTypes.number,
   cadence: PropTypes.number,
   elevation: PropTypes.number,
+  handleWorkoutElementClick: PropTypes.func,
+  handleWorkoutEdit: PropTypes.func,
 };
 
 export default Workout;

@@ -19,6 +19,7 @@ const Workouts = ({
   workouts,
   sortingDesc,
   handleWorkoutElementClick,
+  handleWorkoutEdit,
 }) => {
   return (
     <Content>
@@ -32,6 +33,7 @@ const Workouts = ({
         {sortWorkouts(workouts, sortingDesc ? "desc" : "asc")?.map(
           (workout) => (
             <Workout
+              id={workout.id}
               date={workout.date}
               key={workout.id}
               position={workout.latlng}
@@ -41,6 +43,7 @@ const Workouts = ({
               type={workout.type}
               elevation={workout.elevation}
               handleWorkoutElementClick={handleWorkoutElementClick}
+              handleWorkoutEdit={handleWorkoutEdit}
             />
           )
         )}
@@ -56,6 +59,7 @@ Workouts.propTypes = {
   setSubmittedWorkoutInfo: PropTypes.func,
   workouts: PropTypes.array,
   sortingDesc: PropTypes.bool,
+  handleWorkoutEdit: PropTypes.func,
   handleWorkoutElementClick: PropTypes.func,
 };
 
