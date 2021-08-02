@@ -9,7 +9,7 @@ import { Content } from "./App.styles";
 import { useEffect, useState } from "react";
 
 const App = () => {
-  // Initial state values
+  // Initial form values
   const initialWorkoutInfo = {
     type: "running",
     duration: "0",
@@ -18,6 +18,7 @@ const App = () => {
     elevation: "0",
   };
 
+  // Get users location or fallback to London location as default
   const getLocation = function (setLocaion) {
     if (!navigator.geolocation) return [51.505, -0.09];
     navigator.geolocation.getCurrentPosition((location) => {
@@ -32,6 +33,8 @@ const App = () => {
     useState(initialWorkoutInfo);
   const [workouts, setWorkouts] = useState([]);
   const [location, setLocation] = useState([51.505, -0.09]);
+  // Initial state to run fetch workouts from local storage only once
+  const [initialState, setInitialState] = useState(true);
 
   // Adding a workout object to state
   const addWorkoutToState = (workout) => {
@@ -53,17 +56,23 @@ const App = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    // Generating random id
     const id = Math.trunc(Math.random() * 10000);
+
+    // Fetching common wokrout values
     const type = submittedWorkoutInfo.type;
     const distance = +submittedWorkoutInfo.distance;
     const duration = +submittedWorkoutInfo.duration;
 
+    // Validating common values
     if (!distance || !duration || !type) return;
     if (duration <= 0 && distance <= 0) return;
 
+    // Fetching more precise values
     const cadence = +submittedWorkoutInfo.cadence;
     const elevation = +submittedWorkoutInfo.elevation;
 
+    // Checking whether values are numbers
     if (
       isNaN(distance) ||
       isNaN(duration) ||
@@ -72,6 +81,7 @@ const App = () => {
     )
       return;
 
+    // Computing new workout object
     const newWorkout = {
       id,
       latlng: choosedLocation,
@@ -82,7 +92,10 @@ const App = () => {
       elevation,
     };
 
+    // Updating the state
     addWorkoutToState(newWorkout);
+
+    // Resetting the workout adding form
     setChoosedLocation(null);
     setSubmittedWorkoutInfo(initialWorkoutInfo);
   };
@@ -93,13 +106,11 @@ const App = () => {
     window.localStorage.setItem("workouts", JSON.stringify(workouts));
   };
 
+  // Saving workouts to local storage each time they've been updated
   useEffect(() => {
     if (!workouts || workouts.length === 0) return;
     setWorkoutsToLocalStorage(workouts);
   }, [setWorkoutsToLocalStorage, workouts]);
-
-  // Initial state to run fetch workouts from local storage only once
-  const [initialState, setInitialState] = useState(true);
 
   // Fetching workout data from local storage and getting location
   useEffect(() => {
