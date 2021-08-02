@@ -1,15 +1,15 @@
 import React from "react";
 
 // Styles
-import { Wrapper, Content } from "./Overline.styles";
+import { Wrapper, Content, Button } from "./Overline.styles";
 
 const Overline = () => {
   return (
     <>
       <Wrapper>
         <Content>
-          <button>Sort ⬆</button>
-          <button>Delete all</button>
+          <Button href="#">Sort ⬆</Button>
+          <Button href="#">Delete all</Button>
         </Content>
       </Wrapper>
     </>
