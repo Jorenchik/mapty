@@ -193,6 +193,16 @@ const App = () => {
     setSubmissionType("edit");
   };
 
+  // Handle delete button from workout list element
+  const handleWorkoutDelete = (workoutId) => {
+    const selectedWorkout = findWokroutById(workoutId);
+    if (!selectedWorkout) return;
+    const newWorkouts = workouts.filter(
+      (workout) => workout.id !== selectedWorkout.id
+    );
+    setWorkouts(newWorkouts);
+  };
+
   // Get workout instance from state by its id
   const findWokroutById = (id) => {
     return workouts.find((workouts) => workouts.id === id);
@@ -217,6 +227,7 @@ const App = () => {
         handleDeleteAll={handleDeleteAll}
         handleWorkoutElementClick={handleWorkoutElementClick}
         handleWorkoutEdit={handleWorkoutEdit}
+        handleWorkoutDelete={handleWorkoutDelete}
         error={error}
       />
       <Map

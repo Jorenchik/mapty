@@ -22,6 +22,7 @@ const SideBar = ({
   handleDeleteAll,
   handleWorkoutElementClick,
   handleWorkoutEdit,
+  handleWorkoutDelete,
   error,
 }) => {
   return (
@@ -43,6 +44,7 @@ const SideBar = ({
           sortingDesc={sortingDesc}
           handleWorkoutElementClick={handleWorkoutElementClick}
           handleWorkoutEdit={handleWorkoutEdit}
+          handleWorkoutDelete={handleWorkoutDelete}
         />
         <Copyright />
       </Content>
@@ -61,6 +63,7 @@ SideBar.propTypes = {
   handleDeleteAll: PropTypes.func,
   handleWorkoutElementClick: PropTypes.func,
   handleWorkoutEdit: PropTypes.func,
+  handleWorkoutDelete: PropTypes.func,
   error: PropTypes.string,
 };
 

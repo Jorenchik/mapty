@@ -17,6 +17,7 @@ const Workout = ({
   cadence,
   elevation,
   handleWorkoutElementClick,
+  handleWorkoutDelete,
   handleWorkoutEdit,
 }) => {
   const dateObj = new Date(date);
@@ -36,7 +37,9 @@ const Workout = ({
               <Button href="#" onClick={() => handleWorkoutEdit(id)}>
                 Edit
               </Button>
-              <Button href="#">Delete</Button>
+              <Button href="#" onClick={() => handleWorkoutDelete(id)}>
+                Delete
+              </Button>
             </div>
           </div>
           <div className="workout__details__container">
@@ -90,6 +93,7 @@ Workout.propTypes = {
   elevation: PropTypes.number,
   handleWorkoutElementClick: PropTypes.func,
   handleWorkoutEdit: PropTypes.func,
+  handleWorkoutDelete: PropTypes.func,
 };
 
 export default Workout;

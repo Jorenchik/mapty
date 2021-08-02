@@ -20,6 +20,7 @@ const Workouts = ({
   sortingDesc,
   handleWorkoutElementClick,
   handleWorkoutEdit,
+  handleWorkoutDelete,
 }) => {
   return (
     <Content>
@@ -44,6 +45,7 @@ const Workouts = ({
               elevation={workout.elevation}
               handleWorkoutElementClick={handleWorkoutElementClick}
               handleWorkoutEdit={handleWorkoutEdit}
+              handleWorkoutDelete={handleWorkoutDelete}
             />
           )
         )}
@@ -61,6 +63,7 @@ Workouts.propTypes = {
   sortingDesc: PropTypes.bool,
   handleWorkoutEdit: PropTypes.func,
   handleWorkoutElementClick: PropTypes.func,
+  handleWorkoutDelete: PropTypes.func,
 };
 
 export default Workouts;
