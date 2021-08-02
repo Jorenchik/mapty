@@ -13,7 +13,7 @@ const Overline = ({ sortingDesc, setSortingDesc }) => {
       <Wrapper>
         <Content>
           <Button href="#" onClick={handleSortClick}>
-            Sort ⬆
+            Sort {sortingDesc ? "⬇" : "⬆"}
           </Button>
           <Button href="#">Delete all</Button>
         </Content>
