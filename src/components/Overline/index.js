@@ -5,12 +5,16 @@ import PropTypes from "prop-types";
 import { Wrapper, Content, Button } from "./Overline.styles";
 
 const Overline = ({ sortingDesc, setSortingDesc }) => {
-  // console.log(sortingDesc);
+  const handleSortClick = () => {
+    setSortingDesc(sortingDesc ? false : true);
+  };
   return (
     <>
       <Wrapper>
         <Content>
-          <Button href="#">Sort ⬆</Button>
+          <Button href="#" onClick={handleSortClick}>
+            Sort ⬆
+          </Button>
           <Button href="#">Delete all</Button>
         </Content>
       </Wrapper>
