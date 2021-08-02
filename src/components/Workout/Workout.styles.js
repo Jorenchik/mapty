@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div``;
+
 export const Content = styled.div`
   .workout {
     background-color: var(--color-dark--2);
@@ -8,10 +9,6 @@ export const Content = styled.div`
     padding: 1.5rem 2.25rem;
     margin-bottom: 1.75rem;
     cursor: pointer;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 0.75rem 1.5rem;
   }
 
   .workout--running {
@@ -21,12 +18,21 @@ export const Content = styled.div`
     border-left: 5px solid var(--color-brand--1);
   }
 
-  .workout__title {
+  .workout__header {
+    display: flex;
+    width: 100%;
+  }
+
+  .workout__actions {
+    margin: 1px 0 0 auto;
+  }
+
+  /* .workout__title {
     font-size: 1.7rem;
     font-weight: 600;
     grid-column: 1 / -1;
     display: flex;
-  }
+  } */
 
   .description__text {
     margin-right: auto;
@@ -62,6 +68,12 @@ export const Content = styled.div`
     margin-left: auto;
   }
 
+  .workout__details__container {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+
   .workout__details {
     display: flex;
     align-items: baseline;
@@ -89,4 +101,11 @@ export const Content = styled.div`
     opacity: 0.85;
     transition: all 0.2s;
   }
+`;
+
+export const Button = styled.a`
+  margin-left: 10px;
+  font-size: var(--font-small);
+  color: var(--color-light--2) !important;
+  text-decoration: none;
 `;
