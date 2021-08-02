@@ -14,20 +14,18 @@ import {
 import { Content } from "./Map.styles";
 
 // Map event using component
-function MyComponent({ setChoosedLocation, location }) {
+function MyComponent({ setChoosedLocation, setSubmissionType, location }) {
   const map = useMapEvents({
     click: (e) => {
       setChoosedLocation(e.latlng);
+      setSubmissionType("add");
     },
   });
   map.setView(location);
   return null;
 }
 
-const Map = ({ setChoosedLocation, workouts, location }) => {
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(true);
-
+const Map = ({ setChoosedLocation, workouts, location, setSubmissionType }) => {
   return (
     <Content>
       <MapContainer
@@ -38,6 +36,7 @@ const Map = ({ setChoosedLocation, workouts, location }) => {
       >
         <MyComponent
           setChoosedLocation={setChoosedLocation}
+          setSubmissionType={setSubmissionType}
           location={location}
         />
         <TileLayer
@@ -60,8 +59,15 @@ const Map = ({ setChoosedLocation, workouts, location }) => {
   );
 };
 
+MyComponent.propTypes = {
+  setChoosedLocation: PropTypes.func,
+  setSubmissionType: PropTypes.func,
+  location: PropTypes.array,
+};
+
 Map.propTypes = {
   setChoosedLocation: PropTypes.func,
+  setSubmissionType: PropTypes.func,
   workouts: PropTypes.array,
   location: PropTypes.array,
 };

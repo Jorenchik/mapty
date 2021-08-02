@@ -35,6 +35,7 @@ const App = () => {
   const [location, setLocation] = useState([51.505, -0.09]);
   const [sortingDesc, setSortingDesc] = useState(true);
   const [error, setError] = useState("");
+  const [submissionType, setSubmissionType] = useState("");
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
 
@@ -116,6 +117,7 @@ const App = () => {
     setError("");
     setChoosedLocation(null);
     setSubmittedWorkoutInfo(initialWorkoutInfo);
+    setSubmissionType("");
   };
 
   // Local storage
@@ -167,6 +169,7 @@ const App = () => {
       />
       <Map
         setChoosedLocation={setChoosedLocation}
+        setSubmissionType={setSubmissionType}
         workouts={workouts}
         location={location}
       />
