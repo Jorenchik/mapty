@@ -9,6 +9,7 @@ const Form = ({
   submittedWorkoutInfo,
   setSubmittedWorkoutInfo,
 }) => {
+  // Form change event handlers
   const handleTypeChange = (e) => {
     const newWorkoutInfo = {
       ...submittedWorkoutInfo,

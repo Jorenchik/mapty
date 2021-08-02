@@ -1,11 +1,11 @@
 import React from "react";
-import Form from "../Form";
-import Workout from "../Workout";
 
 // Styles
 import { Content } from "./Workouts.styles";
 
 // Components
+import Form from "../Form";
+import Workout from "../Workout";
 
 const Workouts = ({
   formVisible,
