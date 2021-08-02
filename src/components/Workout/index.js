@@ -7,11 +7,20 @@ import { Wrapper, Content } from "./Workout.styles";
 // Helpers
 import { getHumanReadableDate } from "../../helpers";
 
-const Workout = ({ date, type, distance, duration, cadence, elevation }) => {
+const Workout = ({
+  date,
+  type,
+  distance,
+  position,
+  duration,
+  cadence,
+  elevation,
+  handleWorkoutElementClick,
+}) => {
   const dateObj = new Date(date);
   return (
     <Wrapper>
-      <Content>
+      <Content onClick={() => handleWorkoutElementClick(position)}>
         <li
           className={`workout workout--${
             type === "running" ? "running" : "cycling"
@@ -61,6 +70,7 @@ const Workout = ({ date, type, distance, duration, cadence, elevation }) => {
 Workout.propTypes = {
   date: PropTypes.string,
   type: PropTypes.string,
+  position: PropTypes.object,
   distance: PropTypes.number,
   duration: PropTypes.number,
   cadence: PropTypes.number,

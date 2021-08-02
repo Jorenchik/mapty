@@ -131,6 +131,11 @@ const App = () => {
     window.localStorage.removeItem("workouts");
   };
 
+  const handleWorkoutElementClick = (position) => {
+    const { lat: latitude, lng: longitude } = position;
+    setLocation([latitude, longitude]);
+  };
+
   return (
     <Content>
       <SideBar
@@ -142,6 +147,7 @@ const App = () => {
         sortingDesc={sortingDesc}
         setSortingDesc={setSortingDesc}
         handleDeleteAll={handleDeleteAll}
+        handleWorkoutElementClick={handleWorkoutElementClick}
       />
       <Map
         setChoosedLocation={setChoosedLocation}

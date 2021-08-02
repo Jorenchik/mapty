@@ -18,6 +18,7 @@ const Workouts = ({
   setSubmittedWorkoutInfo,
   workouts,
   sortingDesc,
+  handleWorkoutElementClick,
 }) => {
   return (
     <Content>
@@ -33,11 +34,13 @@ const Workouts = ({
             <Workout
               date={workout.date}
               key={workout.id}
+              position={workout.latlng}
               distance={workout.distance}
               duration={workout.duration}
               cadence={workout.cadence}
               type={workout.type}
               elevation={workout.elevation}
+              handleWorkoutElementClick={handleWorkoutElementClick}
             />
           )
         )}
@@ -53,6 +56,7 @@ Workouts.propTypes = {
   setSubmittedWorkoutInfo: PropTypes.func,
   workouts: PropTypes.array,
   sortingDesc: PropTypes.bool,
+  handleWorkoutElementClick: PropTypes.func,
 };
 
 export default Workouts;
