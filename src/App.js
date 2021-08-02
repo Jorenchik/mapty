@@ -34,6 +34,7 @@ const App = () => {
   const [workouts, setWorkouts] = useState([]);
   const [location, setLocation] = useState([51.505, -0.09]);
   const [sortingDesc, setSortingDesc] = useState(true);
+  const [error, setError] = useState("");
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
 
@@ -57,6 +58,7 @@ const App = () => {
   // Handling the form submission, adding a workout to list
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setError("");
 
     // Generating random id
     const id = Math.trunc(Math.random() * 10000);
@@ -66,22 +68,34 @@ const App = () => {
     const distance = +submittedWorkoutInfo.distance;
     const duration = +submittedWorkoutInfo.duration;
 
-    // Validating common values
-    if (!distance || !duration || !type) return;
-    if (duration <= 0 && distance <= 0) return;
-
     // Fetching more precise values
     const cadence = +submittedWorkoutInfo.cadence;
     const elevation = +submittedWorkoutInfo.elevation;
 
-    // Checking whether values are numbers
     if (
       isNaN(distance) ||
       isNaN(duration) ||
       isNaN(cadence) ||
       isNaN(elevation)
-    )
-      return;
+    ) {
+      return setError("Enter valid numbers.");
+    }
+
+    // Validating common values
+    if (!distance || !duration || !type) {
+      return setError("Values must be greater than zero.");
+    }
+    if (duration <= 0 && distance <= 0) {
+      return setError("Values must be greater than zero.");
+    }
+
+    if (type === "running" && !cadence) {
+      return setError("Values must be greater than zero.");
+    }
+
+    if (type === "cycling" && !elevation) {
+      return setError("Values must be greater than zero.");
+    }
 
     // Computing new workout object
     const newWorkout = {
@@ -99,6 +113,7 @@ const App = () => {
     addWorkoutToState(newWorkout);
 
     // Resetting the workout adding form
+    setError("");
     setChoosedLocation(null);
     setSubmittedWorkoutInfo(initialWorkoutInfo);
   };
@@ -148,6 +163,7 @@ const App = () => {
         setSortingDesc={setSortingDesc}
         handleDeleteAll={handleDeleteAll}
         handleWorkoutElementClick={handleWorkoutElementClick}
+        error={error}
       />
       <Map
         setChoosedLocation={setChoosedLocation}

@@ -7,6 +7,7 @@ import { Content } from "./Sidebar.styles";
 // Components
 import Logo from "../Logo";
 import Overline from "../Overline";
+import Error from "../Error";
 import Workouts from "../Workouts";
 import Copyright from "../Copyright";
 
@@ -20,6 +21,7 @@ const SideBar = ({
   setSortingDesc,
   handleDeleteAll,
   handleWorkoutElementClick,
+  error,
 }) => {
   return (
     <>
@@ -30,6 +32,7 @@ const SideBar = ({
           setSortingDesc={setSortingDesc}
           handleDeleteAll={handleDeleteAll}
         />
+        {error !== "" ? <Error message={error} /> : ""}
         <Workouts
           workouts={workouts}
           handleFormSubmit={handleFormSubmit}
@@ -55,6 +58,7 @@ SideBar.propTypes = {
   setSortingDesc: PropTypes.func,
   handleDeleteAll: PropTypes.func,
   handleWorkoutElementClick: PropTypes.func,
+  error: PropTypes.string,
 };
 
 export default SideBar;

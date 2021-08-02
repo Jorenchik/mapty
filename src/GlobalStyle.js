@@ -2,7 +2,6 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-
   --font-medium: 1.5rem;
 
   --color-brand--1: #ffb545;
@@ -13,6 +12,8 @@ export const GlobalStyle = createGlobalStyle`
   --color-light--1: #aaa;
   --color-light--2: #ececec;
   --color-light--3: rgb(214, 222, 224);
+
+  --color-red--1: #ff0033;
 }
 
 * {
