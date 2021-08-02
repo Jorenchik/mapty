@@ -41,6 +41,7 @@ const App = () => {
     setWorkouts([
       ...workouts,
       {
+        date: workout.date,
         id: workout.id,
         latlng: workout.latlng,
         type: workout.type,
@@ -83,6 +84,7 @@ const App = () => {
 
     // Computing new workout object
     const newWorkout = {
+      date: new Date(),
       id,
       latlng: choosedLocation,
       type,
