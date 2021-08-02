@@ -5,9 +5,10 @@ import PropTypes from "prop-types";
 import { Content } from "./Sidebar.styles";
 
 // Components
+import Logo from "../Logo";
+import Overline from "../Overline";
 import Workouts from "../Workouts";
 import Copyright from "../Copyright";
-import Logo from "../Logo";
 
 const SideBar = ({
   formVisible,
@@ -19,6 +20,7 @@ const SideBar = ({
   return (
     <Content>
       <Logo />
+      <Overline />
       <Workouts
         workouts={workouts}
         handleFormSubmit={handleFormSubmit}
