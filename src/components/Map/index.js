@@ -14,9 +14,21 @@ import {
 import { Content } from "./Map.styles";
 
 // Map event using component
-function MyComponent({ setChoosedLocation, setSubmissionType, location }) {
+function MyComponent({
+  setChoosedLocation,
+  setSubmissionType,
+  location,
+  setSubmittedWorkoutInfo,
+}) {
   const map = useMapEvents({
     click: (e) => {
+      setSubmittedWorkoutInfo({
+        type: "running",
+        duration: "0",
+        distance: "0",
+        cadence: "0",
+        elevation: "0",
+      });
       setChoosedLocation(e.latlng);
       setSubmissionType("add");
     },
@@ -25,7 +37,13 @@ function MyComponent({ setChoosedLocation, setSubmissionType, location }) {
   return null;
 }
 
-const Map = ({ setChoosedLocation, workouts, location, setSubmissionType }) => {
+const Map = ({
+  setChoosedLocation,
+  workouts,
+  location,
+  setSubmissionType,
+  setSubmittedWorkoutInfo,
+}) => {
   return (
     <Content>
       <MapContainer
@@ -37,6 +55,7 @@ const Map = ({ setChoosedLocation, workouts, location, setSubmissionType }) => {
         <MyComponent
           setChoosedLocation={setChoosedLocation}
           setSubmissionType={setSubmissionType}
+          setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
           location={location}
         />
         <TileLayer
@@ -62,12 +81,14 @@ const Map = ({ setChoosedLocation, workouts, location, setSubmissionType }) => {
 MyComponent.propTypes = {
   setChoosedLocation: PropTypes.func,
   setSubmissionType: PropTypes.func,
+  setSubmittedWorkoutInfo: PropTypes.func,
   location: PropTypes.array,
 };
 
 Map.propTypes = {
   setChoosedLocation: PropTypes.func,
   setSubmissionType: PropTypes.func,
+  setSubmittedWorkoutInfo: PropTypes.func,
   workouts: PropTypes.array,
   location: PropTypes.array,
 };

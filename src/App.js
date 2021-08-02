@@ -193,10 +193,12 @@ const App = () => {
     setSubmissionType("edit");
   };
 
+  // Get workout instance from state by its id
   const findWokroutById = (id) => {
     return workouts.find((workouts) => workouts.id === id);
   };
 
+  // Handle click on sidebar list element
   const handleWorkoutElementClick = (position) => {
     const { lat: latitude, lng: longitude } = position;
     setLocation([latitude, longitude]);
@@ -220,6 +222,7 @@ const App = () => {
       <Map
         setChoosedLocation={setChoosedLocation}
         setSubmissionType={setSubmissionType}
+        setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
         workouts={workouts}
         location={location}
       />
