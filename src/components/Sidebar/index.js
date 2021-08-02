@@ -18,12 +18,17 @@ const SideBar = ({
   workouts,
   sortingDesc,
   setSortingDesc,
+  handleDeleteAll,
 }) => {
   return (
     <>
       <Content>
         <Logo />
-        <Overline sortingDesc={sortingDesc} setSortingDesc={setSortingDesc} />
+        <Overline
+          sortingDesc={sortingDesc}
+          setSortingDesc={setSortingDesc}
+          handleDeleteAll={handleDeleteAll}
+        />
         <Workouts
           workouts={workouts}
           handleFormSubmit={handleFormSubmit}
@@ -46,6 +51,7 @@ SideBar.propTypes = {
   workouts: PropTypes.array,
   sortingDesc: PropTypes.bool,
   setSortingDesc: PropTypes.func,
+  handleDeleteAll: PropTypes.func,
 };
 
 export default SideBar;

@@ -125,6 +125,12 @@ const App = () => {
     setInitialState(false);
   }, [initialState]);
 
+  // Handle deleteAll button from the overline
+  const handleDeleteAll = () => {
+    setWorkouts([]);
+    window.localStorage.removeItem("workouts");
+  };
+
   return (
     <Content>
       <SideBar
@@ -135,6 +141,7 @@ const App = () => {
         workouts={workouts}
         sortingDesc={sortingDesc}
         setSortingDesc={setSortingDesc}
+        handleDeleteAll={handleDeleteAll}
       />
       <Map
         setChoosedLocation={setChoosedLocation}
