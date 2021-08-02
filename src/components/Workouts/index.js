@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 // Styles
 import { Content } from "./Workouts.styles";
@@ -36,6 +37,14 @@ const Workouts = ({
       </ul>
     </Content>
   );
+};
+
+Workouts.propTypes = {
+  formVisible: PropTypes.bool,
+  submittedWorkoutInfo: PropTypes.object,
+  handleFormSubmit: PropTypes.func,
+  setSubmittedWorkoutInfo: PropTypes.func,
+  workouts: PropTypes.array,
 };
 
 export default Workouts;

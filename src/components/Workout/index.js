@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 // Styles
 import { Wrapper, Content } from "./Workout.styles";
@@ -46,5 +47,13 @@ const Workout = ({ type, distance, duration, cadence, elevation }) => (
     </Content>
   </Wrapper>
 );
+
+Workout.propTypes = {
+  type: PropTypes.string,
+  distance: PropTypes.number,
+  duration: PropTypes.number,
+  cadence: PropTypes.number,
+  elevation: PropTypes.number,
+};
 
 export default Workout;

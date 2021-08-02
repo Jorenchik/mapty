@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 // Styles
 import { Content } from "./Form.styles";
@@ -112,6 +113,13 @@ const Form = ({
       </form>
     </Content>
   );
+};
+
+Form.propTypes = {
+  visibility: PropTypes.bool,
+  handleFormSubmit: PropTypes.func,
+  submittedWorkoutInfo: PropTypes.object,
+  setSubmittedWorkoutInfo: PropTypes.func,
 };
 
 export default Form;

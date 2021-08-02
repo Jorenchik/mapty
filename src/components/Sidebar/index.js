@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 // Styles
 import { Content } from "./Sidebar.styles";
@@ -29,4 +30,13 @@ const SideBar = ({
     </Content>
   );
 };
+
+SideBar.propTypes = {
+  formVisible: PropTypes.bool,
+  submittedWorkoutInfo: PropTypes.object,
+  handleFormSubmit: PropTypes.func,
+  setSubmittedWorkoutInfo: PropTypes.func,
+  workouts: PropTypes.array,
+};
+
 export default SideBar;
