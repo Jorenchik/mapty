@@ -7,7 +7,11 @@ import { Wrapper, Content } from "./Workout.styles";
 const Workout = ({ type, distance, duration, cadence, elevation }) => (
   <Wrapper>
     <Content>
-      <li className="workout workout--cycling">
+      <li
+        className={`workout workout--${
+          type === "running" ? "running" : "cycling"
+        }`}
+      >
         <h2 className="workout__title">{`${type[0].toUpperCase()}${type.slice(
           1
         )}`}</h2>
