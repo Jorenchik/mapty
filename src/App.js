@@ -42,7 +42,7 @@ const App = () => {
     setWorkouts([
       ...workouts,
       {
-        date: workout.date,
+        date: workout.date.toString(),
         id: workout.id,
         latlng: workout.latlng,
         type: workout.type,
