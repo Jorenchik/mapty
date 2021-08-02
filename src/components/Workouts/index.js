@@ -8,6 +8,9 @@ import { Content } from "./Workouts.styles";
 import Form from "../Form";
 import Workout from "../Workout";
 
+// Helpers
+import { sortWorkouts } from "../../helpers";
+
 const Workouts = ({
   formVisible,
   submittedWorkoutInfo,
@@ -25,17 +28,19 @@ const Workouts = ({
           submittedWorkoutInfo={submittedWorkoutInfo}
           setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
         />
-        {workouts?.map((workout) => (
-          <Workout
-            date={workout.date}
-            key={workout.id}
-            distance={workout.distance}
-            duration={workout.duration}
-            cadence={workout.cadence}
-            type={workout.type}
-            elevation={workout.elevation}
-          />
-        ))}
+        {sortWorkouts(workouts, sortingDesc ? "desc" : "asc")?.map(
+          (workout) => (
+            <Workout
+              date={workout.date}
+              key={workout.id}
+              distance={workout.distance}
+              duration={workout.duration}
+              cadence={workout.cadence}
+              type={workout.type}
+              elevation={workout.elevation}
+            />
+          )
+        )}
       </ul>
     </Content>
   );
