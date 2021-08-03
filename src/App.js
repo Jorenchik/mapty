@@ -182,6 +182,10 @@ const App = () => {
     setInitialState(false);
   }, [initialState]);
 
+  useEffect(() => {
+    getLocation(setLocation);
+  }, [loadingLocations]);
+
   // Handle deleteAll button from the overline
   const handleDeleteAll = () => {
     setWorkouts([]);

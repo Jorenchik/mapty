@@ -108,8 +108,8 @@ const Map = ({
                         (geocode) => geocode.id === workout.id
                       ).locality
                     }`
-                  : ""
-              }${loadingLocations ? "Loading..." : ""}`}
+                  : "Loading..."
+              }`}
             </Popup>
           </Marker>
         ))}
