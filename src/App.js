@@ -250,6 +250,7 @@ const App = () => {
         setIsShowAllClicked={setIsShowAllClicked}
         workouts={workouts}
         location={location}
+        workoutGeocodes={workoutGeocodes}
       />
     </Content>
   );

@@ -61,6 +61,7 @@ const Map = ({
   location,
   setSubmissionType,
   setSubmittedWorkoutInfo,
+  workoutGeocodes,
   isShowAllClicked,
   setIsShowAllClicked,
 }) => {
@@ -92,7 +93,19 @@ const Map = ({
               <span> </span>
               {`${workout.type[0].toUpperCase()}${workout.type.slice(1)} - ${
                 workout.distance
-              } km`}
+              } km ${
+                workoutGeocodes.length !== 0
+                  ? `${
+                      workoutGeocodes.find(
+                        (geocode) => geocode.id === workout.id
+                      ).principalSubdivision
+                    }, ${
+                      workoutGeocodes.find(
+                        (geocode) => geocode.id === workout.id
+                      ).locality
+                    }`
+                  : "Loading location..."
+              }`}
             </Popup>
           </Marker>
         ))}
@@ -117,6 +130,7 @@ Map.propTypes = {
   setSubmittedWorkoutInfo: PropTypes.func,
   isShowAllClicked: PropTypes.bool,
   setIsShowAllClicked: PropTypes.func,
+  workoutGeocodes: PropTypes.array,
   workouts: PropTypes.array,
   location: PropTypes.array,
 };
