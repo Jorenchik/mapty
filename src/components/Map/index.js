@@ -94,7 +94,8 @@ const Map = ({
               {`${workout.type[0].toUpperCase()}${workout.type.slice(1)} - ${
                 workout.distance
               } km ${
-                workoutGeocodes.length !== 0
+                workoutGeocodes.length !== 0 &&
+                workoutGeocodes.find((geocode) => geocode.id === workout.id)
                   ? `${
                       workoutGeocodes.find(
                         (geocode) => geocode.id === workout.id

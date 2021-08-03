@@ -207,6 +207,9 @@ const App = () => {
       (workout) => workout.id !== selectedWorkout.id
     );
     setWorkouts(newWorkouts);
+    if (newWorkouts.length === 0) {
+      window.localStorage.removeItem("workouts");
+    }
   };
 
   // Get workout instance from state by its id
