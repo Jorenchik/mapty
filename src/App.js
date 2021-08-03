@@ -7,6 +7,7 @@ import SideBar from "./components/Sidebar";
 // Styles
 import { Content } from "./App.styles";
 import { useEffect, useState } from "react";
+import { useFetchGeocodes } from "./useFetchGeocodes";
 
 const App = () => {
   // Initial form values
@@ -38,8 +39,12 @@ const App = () => {
   const [submissionType, setSubmissionType] = useState("");
   const [selectedWorkoutId, setSelectedWorkoutId] = useState();
   const [isShowAllClicked, setIsShowAllClicked] = useState(false);
+  const [workoutGeocodes, setWorkoutGeocodes] = useState([]);
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
+
+  // Get workout locations
+  useFetchGeocodes(workouts, setWorkoutGeocodes);
 
   // Adding a workout object to state
   const addWorkoutToState = (workout) => {
