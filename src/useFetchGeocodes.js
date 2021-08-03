@@ -25,5 +25,5 @@ export const useFetchGeocodes = (
     setLoadingLocations(true);
     fetchGeocodes();
     setLoadingLocations(false);
-  }, [workouts, setWorkoutGeocodes]);
+  }, [workouts, setWorkoutGeocodes, setLoadingLocations]);
 };
