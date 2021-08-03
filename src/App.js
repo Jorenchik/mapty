@@ -40,11 +40,15 @@ const App = () => {
   const [selectedWorkoutId, setSelectedWorkoutId] = useState();
   const [isShowAllClicked, setIsShowAllClicked] = useState(false);
   const [workoutGeocodes, setWorkoutGeocodes] = useState([]);
+
+  // Loading state
+  const [loadingLocations, setLoadingLocations] = useState(true);
+
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
 
   // Get workout locations
-  useFetchGeocodes(workouts, setWorkoutGeocodes);
+  useFetchGeocodes(workouts, setWorkoutGeocodes, setLoadingLocations);
 
   // Adding a workout object to state
   const addWorkoutToState = (workout) => {
@@ -254,6 +258,7 @@ const App = () => {
         workouts={workouts}
         location={location}
         workoutGeocodes={workoutGeocodes}
+        loadingLocations={loadingLocations}
       />
     </Content>
   );

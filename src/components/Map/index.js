@@ -22,6 +22,7 @@ function MyComponent({
   setSubmittedWorkoutInfo,
   isShowAllClicked,
   setIsShowAllClicked,
+  loadingLocations,
 }) {
   const map = useMapEvents({
     click: (e) => {
@@ -64,6 +65,7 @@ const Map = ({
   workoutGeocodes,
   isShowAllClicked,
   setIsShowAllClicked,
+  loadingLocations,
 }) => {
   return (
     <Content>
@@ -81,6 +83,7 @@ const Map = ({
           setIsShowAllClicked={setIsShowAllClicked}
           workouts={workouts}
           location={location}
+          loadingLocations={loadingLocations}
         />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -105,8 +108,8 @@ const Map = ({
                         (geocode) => geocode.id === workout.id
                       ).locality
                     }`
-                  : "Loading location..."
-              }`}
+                  : ""
+              }${loadingLocations ? "Loading..." : ""}`}
             </Popup>
           </Marker>
         ))}
@@ -132,6 +135,7 @@ Map.propTypes = {
   isShowAllClicked: PropTypes.bool,
   setIsShowAllClicked: PropTypes.func,
   workoutGeocodes: PropTypes.array,
+  loadingLocations: PropTypes.bool,
   workouts: PropTypes.array,
   location: PropTypes.array,
 };

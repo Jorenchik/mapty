@@ -3,7 +3,11 @@ import { useEffect } from "react";
 // API
 import API from "./API";
 
-export const useFetchGeocodes = (workouts, setWorkoutGeocodes) => {
+export const useFetchGeocodes = (
+  workouts,
+  setWorkoutGeocodes,
+  setLoadingLocations
+) => {
   useEffect(() => {
     const fetchGeocodes = async () => {
       if (workouts.length === 0) return;
@@ -18,6 +22,8 @@ export const useFetchGeocodes = (workouts, setWorkoutGeocodes) => {
       });
       setWorkoutGeocodes(geocodes);
     };
+    setLoadingLocations(true);
     fetchGeocodes();
+    setLoadingLocations(false);
   }, [workouts, setWorkoutGeocodes]);
 };
