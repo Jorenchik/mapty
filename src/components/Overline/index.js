@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 // Styles
 import { Wrapper, Content, Button } from "./Overline.styles";
 
-const Overline = ({ sortingDesc, setSortingDesc, handleDeleteAll }) => {
+const Overline = ({
+  sortingDesc,
+  setSortingDesc,
+  handleDeleteAll,
+  handleShowAllClick,
+}) => {
   const handleSortClick = () => {
     setSortingDesc(sortingDesc ? false : true);
   };
@@ -13,7 +18,9 @@ const Overline = ({ sortingDesc, setSortingDesc, handleDeleteAll }) => {
     <>
       <Wrapper>
         <Content>
-          <Button href="#">Show all</Button>
+          <Button href="#" onClick={handleShowAllClick}>
+            Show all
+          </Button>
           <Button href="#" onClick={handleSortClick}>
             Sort {sortingDesc ? "⬇" : "⬆"}
           </Button>
@@ -30,6 +37,7 @@ Overline.propTypes = {
   sortingDesc: PropTypes.bool,
   setSortingDesc: PropTypes.func,
   handleDeleteAll: PropTypes.func,
+  handleShowAllClick: PropTypes.func,
 };
 
 export default Overline;

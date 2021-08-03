@@ -37,6 +37,7 @@ const App = () => {
   const [error, setError] = useState("");
   const [submissionType, setSubmissionType] = useState("");
   const [selectedWorkoutId, setSelectedWorkoutId] = useState();
+  const [isShowAllClicked, setIsShowAllClicked] = useState(false);
   // Initial state to run fetch workouts from local storage only once
   const [initialState, setInitialState] = useState(true);
 
@@ -214,6 +215,11 @@ const App = () => {
     setLocation([latitude, longitude]);
   };
 
+  // Handle click on showAll button
+  const handleShowAllClick = () => {
+    if (!isShowAllClicked) setIsShowAllClicked(true);
+  };
+
   return (
     <Content>
       <SideBar
@@ -228,12 +234,15 @@ const App = () => {
         handleWorkoutElementClick={handleWorkoutElementClick}
         handleWorkoutEdit={handleWorkoutEdit}
         handleWorkoutDelete={handleWorkoutDelete}
+        handleShowAllClick={handleShowAllClick}
         error={error}
       />
       <Map
         setChoosedLocation={setChoosedLocation}
         setSubmissionType={setSubmissionType}
         setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
+        isShowAllClicked={isShowAllClicked}
+        setIsShowAllClicked={setIsShowAllClicked}
         workouts={workouts}
         location={location}
       />

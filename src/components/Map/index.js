@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 // Components
@@ -18,7 +18,10 @@ function MyComponent({
   setChoosedLocation,
   setSubmissionType,
   location,
+  workouts,
   setSubmittedWorkoutInfo,
+  isShowAllClicked,
+  setIsShowAllClicked,
 }) {
   const map = useMapEvents({
     click: (e) => {
@@ -33,7 +36,22 @@ function MyComponent({
       setSubmissionType("add");
     },
   });
-  map.setView(location);
+
+  useEffect(() => {
+    if (!isShowAllClicked) return;
+    const markers = workouts.map((workout) => {
+      const { lat, lng } = workout.latlng;
+      return [lat, lng];
+    });
+    map.fitBounds(markers);
+    setIsShowAllClicked(false);
+  }, [isShowAllClicked, setIsShowAllClicked, workouts, map]);
+
+  // Set location to current location state each time it changes
+  useEffect(() => {
+    map.setView(location);
+  }, [location, map]);
+
   return null;
 }
 
@@ -43,6 +61,8 @@ const Map = ({
   location,
   setSubmissionType,
   setSubmittedWorkoutInfo,
+  isShowAllClicked,
+  setIsShowAllClicked,
 }) => {
   return (
     <Content>
@@ -56,6 +76,9 @@ const Map = ({
           setChoosedLocation={setChoosedLocation}
           setSubmissionType={setSubmissionType}
           setSubmittedWorkoutInfo={setSubmittedWorkoutInfo}
+          isShowAllClicked={isShowAllClicked}
+          setIsShowAllClicked={setIsShowAllClicked}
+          workouts={workouts}
           location={location}
         />
         <TileLayer
@@ -82,13 +105,18 @@ MyComponent.propTypes = {
   setChoosedLocation: PropTypes.func,
   setSubmissionType: PropTypes.func,
   setSubmittedWorkoutInfo: PropTypes.func,
+  setIsShowAllClicked: PropTypes.func,
   location: PropTypes.array,
+  workouts: PropTypes.array,
+  isShowAllClicked: PropTypes.bool,
 };
 
 Map.propTypes = {
   setChoosedLocation: PropTypes.func,
   setSubmissionType: PropTypes.func,
   setSubmittedWorkoutInfo: PropTypes.func,
+  isShowAllClicked: PropTypes.bool,
+  setIsShowAllClicked: PropTypes.func,
   workouts: PropTypes.array,
   location: PropTypes.array,
 };
